@@ -1,9 +1,39 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Library</router-link> |
+      <router-link to="/SingleBook">SingleBook</router-link>
     </div>
-    <router-view/>
+    <svg
+      @click="toogleReadingList"
+      xmlns="http://www.w3.org/2000/svg"
+      height="40px"
+      viewBox="0 0 24 24"
+      width="40px"
+      fill="#000000"
+    >
+      <path d="M0 0h24v24H0V0z" fill="none" />
+      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+    </svg>
+    <ReadingList v-if="showReadingList"/>
+    <router-view />
   </div>
+
 </template>
+
+<script>
+import ReadingList from "./components/ReadingList.vue";
+export default {
+  name: 'App',
+  components: { ReadingList },
+  data(){return {
+    showReadingList: false
+  }},
+  methods: {
+    toogleReadingList(){
+      this.showReadingList = !this.showReadingList
+    }
+  }
+  
+}
+</script>
